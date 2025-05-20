@@ -7,6 +7,10 @@ from ai_agent.processor import process_docx_file, export_problems_to_csv
 from ai_agent.utils import ensure_dirs
 
 app = Flask(__name__)
+
+app.config["UPLOAD_FOLDER"] = config.UPLOAD_FOLDER
+app.config["RESULTS_FOLDER"] = config.RESULTS_FOLDER
+
 os.makedirs(app.config["UPLOAD_FOLDER"], exist_ok=True)
 os.makedirs(app.config["RESULTS_FOLDER"], exist_ok=True)
 
