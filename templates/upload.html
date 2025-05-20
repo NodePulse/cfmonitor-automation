@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Upload DOCX File</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        font-family: "Poppins", sans-serif;
+        background: linear-gradient(135deg, #c3ecb2, #7ee8fa);
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        animation: fadeIn 1s ease-in-out;
+      }
+
+      .upload-box {
+        background-color: #ffffffcc;
+        padding: 40px 30px;
+        border-radius: 20px;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        text-align: center;
+        width: 420px;
+        transform: scale(0.95);
+        animation: slideUp 0.5s ease forwards;
+      }
+
+      h2 {
+        margin-bottom: 25px;
+        font-size: 24px;
+        color: #333;
+      }
+
+      label {
+        font-weight: 500;
+        color: #444;
+        display: block;
+        margin: 10px 0 5px;
+        text-align: left;
+      }
+
+      input[type="file"],
+      input[type="number"] {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        outline: none;
+        margin-bottom: 15px;
+        transition: all 0.3s ease;
+      }
+
+      input[type="file"]:hover,
+      input[type="number"]:hover {
+        border-color: #4caf50;
+      }
+
+      button {
+        width: 100%;
+        background: linear-gradient(135deg, #4caf50, #2e7d32);
+        color: white;
+        padding: 12px;
+        border: none;
+        border-radius: 8px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background 0.3s ease, transform 0.2s;
+      }
+
+      button:hover {
+        background: linear-gradient(135deg, #45a049, #1b5e20);
+        transform: scale(1.02);
+      }
+
+      .message {
+        margin-top: 20px;
+        color: #333;
+        font-weight: 500;
+        animation: fadeIn 0.5s ease-in-out;
+      }
+
+      a {
+        color: #2e7d32;
+        text-decoration: none;
+        font-weight: 600;
+        transition: color 0.3s ease;
+      }
+
+      a:hover {
+        color: #1b5e20;
+      }
+
+      @keyframes slideUp {
+        from {
+          opacity: 0;
+          transform: translateY(40px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="upload-box">
+      <h2>📄 Upload a .docx File</h2>
+      <form action="/upload" method="POST" enctype="multipart/form-data">
+        <label>Select DOCX File:</label>
+        <input type="file" name="file" accept=".docx" required />
+
+        <label>Enter Week Number:</label>
+        <input type="number" name="week" min="1" required />
+
+        <label>Enter Level:</label>
+        <input type="number" name="level" min="1" required />
+
+        <button type="submit">🚀 Upload & Process</button>
+      </form>
+
+      {% if message %}
+      <div class="message">{{ message }}</div>
+      {% endif %} {% if download_link %}
+      <p class="message">
+        <a href="{{ download_link }}" target="_blank">📥 Download CSV File</a>
+      </p>
+      {% endif %}
+    </div>
+  </body>
+</html>
